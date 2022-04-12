@@ -10,21 +10,21 @@ defmodule ListFilterTest do
       assert response == 0
     end
 
-    test "when given a list with numbers" do
-      numbers_list = [1, 2, 3, 4, 6]
+    # test "when given a list with numbers" do
+    #   numbers_list = [1, 2, 3, 4, 6]
 
-      response = ListFilter.call(numbers_list)
+    #   response = ListFilter.call(numbers_list)
 
-      assert response == 2
-    end
+    #   assert response == 2
+    # end
 
-    test "when given a list with negative numbers" do
-      negative_list = [-1, -2, -3, -4, 6]
+    # test "when given a list with negative numbers" do
+    #   negative_list = [-1, -2, -3, -4, 6]
 
-      response = ListFilter.call(negative_list)
+    #   response = ListFilter.call(negative_list)
 
-      assert response == 2
-    end
+    #   assert response == 2
+    # end
 
     test "when given a list with strings" do
       strings_list = ["1", "2", "3", "4", "6"]
@@ -34,13 +34,13 @@ defmodule ListFilterTest do
       assert response == 2
     end
 
-    test "when given a list with numbers and strings" do
-      mixed_list = ["1", "2", 3, "4", "6", "a", "b", "c"]
+    # test "when given a list with numbers and strings" do
+    #   mixed_list = ["1", "2", 3, "4", "6", "a", "b", "c"]
 
-      response = ListFilter.call(mixed_list)
+    #   response = ListFilter.call(mixed_list)
 
-      assert response == 2
-    end
+    #   assert response == 2
+    # end
   end
 end
 

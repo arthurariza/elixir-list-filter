@@ -3,15 +3,14 @@ require Integer
 
 defmodule ListFilter do
   def call(list) do
-    Enum.count(remove_strings(list))
+    number_list = Enum.map(list, fn x -> convert_to_integer(x) end)
+    Enum.count(number_list, fn x -> Integer.is_even(x) end)
   end
 
-  defp remove_strings(list) do
-    Enum.flat_map(list, fn x ->
-      case Integer.parse(x) do
-        {int, _rest} -> [int]
-        :error -> []
-      end
-    end)
+  defp convert_to_integer(my_string) do
+    case Integer.parse(my_string) do
+      {number, _} -> number
+      :error -> 0
+    end
   end
 end
