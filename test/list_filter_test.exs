@@ -10,21 +10,21 @@ defmodule ListFilterTest do
       assert response == 0
     end
 
-    # test "when given a list with numbers" do
-    #   numbers_list = [1, 2, 3, 4, 6]
+    test "when given a list with numbers" do
+      numbers_list = [1, 2, 3, 4, 6]
 
-    #   response = ListFilter.call(numbers_list)
+      response = ListFilter.call(numbers_list)
 
-    #   assert response == 2
-    # end
+      assert response == 2
+    end
 
-    # test "when given a list with negative numbers" do
-    #   negative_list = [-1, -2, -3, -4, 6]
+    test "when given a list with negative numbers" do
+      negative_list = [-1, -2, -3, -4, 6]
 
-    #   response = ListFilter.call(negative_list)
+      response = ListFilter.call(negative_list)
 
-    #   assert response == 2
-    # end
+      assert response == 2
+    end
 
     test "when given a list with strings" do
       strings_list = ["1", "2", "3", "4", "6"]
@@ -34,20 +34,44 @@ defmodule ListFilterTest do
       assert response == 2
     end
 
-    # test "when given a list with numbers and strings" do
-    #   mixed_list = ["1", "2", 3, "4", "6", "a", "b", "c"]
+    test "when given a list with numbers and strings" do
+      mixed_list = ["1", "2", 3, "4", "6", "a", "b", "c"]
 
-    #   response = ListFilter.call(mixed_list)
+      response = ListFilter.call(mixed_list)
 
-    #   assert response == 2
-    # end
+      assert response == 2
+    end
+  end
+
+  describe "ListFilter.string_to_integer/1" do
+    test "returns int when given an int" do
+      [value_1, value_2, value_3] = Enum.take_random(1..100, 3)
+
+      response_1 = ListFilter.string_to_integer(value_1)
+      response_2 = ListFilter.string_to_integer(value_2)
+      response_3 = ListFilter.string_to_integer(value_3)
+
+      assert [response_1, response_2, response_3] == [value_1, value_2, value_3]
+    end
+
+    test "returns an int when given a string with a number" do
+      [value_1, value_2, value_3] = ["1", "2", "3"]
+
+      response_1 = ListFilter.string_to_integer(value_1)
+      response_2 = ListFilter.string_to_integer(value_2)
+      response_3 = ListFilter.string_to_integer(value_3)
+
+      assert [response_1, response_2, response_3] == [1, 2, 3]
+    end
+
+    test "returns 0 when given a string with letters/words" do
+      [value_1, value_2, value_3] = ["abc", "a", "abcd"]
+
+      response_1 = ListFilter.string_to_integer(value_1)
+      response_2 = ListFilter.string_to_integer(value_2)
+      response_3 = ListFilter.string_to_integer(value_3)
+
+      assert [response_1, response_2, response_3] == [0, 0, 0]
+    end
   end
 end
-
-# Filtre todos os elementos numéricos da lista e retorne quantos números ímpares
-# existem nessa lista.
-
-# ListFilter.call(["1", "3", "6", "43", "banana", "6", "abc"])
-# > 3
-
-# Enum.count([1,2,3, "3", "5"], fn x -> Integer.is_odd(String.to_integer(x))  end)
